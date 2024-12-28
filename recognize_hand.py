@@ -1,7 +1,7 @@
 import pyautogui
 
 def recognize_hand(hand_region, templates):
-    hand_tiles = []
+    hand_titles = []
     seen_positions = set()
     threshold = 87
     for title_name, title in templates.items():
@@ -17,8 +17,8 @@ def recognize_hand(hand_region, templates):
                 # 如果该位置之前没有出现过，就将其添加到结果中
                 if not any(abs(position[0] - p[0]) < threshold and abs(position[1] - p[1]) < threshold for p in seen_positions):
                     seen_positions.add(position)  # 记录这个位置
-                    hand_tiles.append((title_name, result))  # 保存麻将牌及其位置
+                    hand_titles.append((title_name, position))  # 保存麻将牌及其位置
         except:
             continue
     
-    return hand_tiles
+    return hand_titles
